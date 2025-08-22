@@ -1,0 +1,17 @@
+{
+  "name": "qa-cypress-automation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+       "cypress:open:qa": "cypress open --config-file=cypress/config/cypress.qa.config.js",
+       "cypress:run:qa": "cypress run --config-file=cypress/config/cypress.qa.config.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "cypress": "^15.0.0"
+  }
+}
