@@ -1,27 +1,33 @@
-describe('Contact Form Test', () => {
+describe('Contact Form Data-Driven Test', () => {
 
-    beforeEach(() => {
+  beforeEach(() => {
     cy.visit(Cypress.env('contactPage'));
-  })
+  });
 
-  it('should fill in contact form with sample data', () => {
+  it('should fill in contact form with multiple users', () => {
+    cy.fixture('contact-us-form').then((users) => {
+      users.forEach((persona) => {
 
-      cy.fixture('contact-us-form').then((persona) => {
+        cy.get('[name="your-name"]')
+          .clear()
+          .type(persona.name)
+          .should('have.value', persona.name);
 
-      cy.get('[name="your-name"]')
-      .type(persona.name)
-      .should('have.value', persona.name);
+        cy.get('[name="your-email"]')
+          .clear()
+          .type(persona.email)
+          .should('have.value', persona.email);
 
-      cy.get('[name="your-email"]')
-      .type(persona.email)
-      .should('have.value', persona.email);
+        cy.get('[name="your-message"]')
+          .clear()
+          .type(persona.message)
+          .should('have.value', persona.message);
 
-      cy.get('[name="your-message"]')
-      .type(persona.message)
-      .should('have.value', persona.message);
+      
+        cy.wait(500);
 
+      });
     });
-    
   });
 
 });
