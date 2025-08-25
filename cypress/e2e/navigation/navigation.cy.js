@@ -12,7 +12,7 @@ beforeEach(() => {
     cy.url()
     .should('include', 'https://www.eight25media.com/eight25-work/');
     
-    cy.contains('Not all work is created equal')
+    cy.contains('Our Work')
     .should('be.visible');
 
   });
