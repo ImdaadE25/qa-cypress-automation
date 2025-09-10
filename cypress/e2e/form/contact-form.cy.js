@@ -4,26 +4,21 @@ describe('Contact Form Data-Driven Test', () => {
     cy.visit(Cypress.env('contactPage'));
   });
 
+  function fillInputField(selector, value) {
+    cy.get(selector)
+      .clear()
+      .type(value)
+      .should('have.value', value);
+  }
+
   it('should fill in contact form with multiple users', () => {
     cy.fixture('contact-us-form').then((users) => {
       users.forEach((persona) => {
 
-        cy.get('[name="your-name"]')
-          .clear()
-          .type(persona.name)
-          .should('have.value', persona.name);
+        fillInputField('[name="your-name"]', persona.name);
+        fillInputField('[name="your-email"]', persona.email);
+        fillInputField('[name="your-message"]', persona.message);
 
-        cy.get('[name="your-email"]')
-          .clear()
-          .type(persona.email)
-          .should('have.value', persona.email);
-
-        cy.get('[name="your-message"]')
-          .clear()
-          .type(persona.message)
-          .should('have.value', persona.message);
-
-      
         cy.wait(500);
 
       });
